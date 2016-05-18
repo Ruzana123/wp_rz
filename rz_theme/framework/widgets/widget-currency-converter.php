@@ -48,8 +48,9 @@ $instance = wp_parse_args( (array) $instance, $defaults );
 
 	<!-- City -->
 	<select name="<?php echo $this->get_field_name( 'currency' ); ?>" id="<?php echo $this->get_field_id( 'title' ); ?>">
-		<option>usd</option>
-  		<option>eur</option>
+		<option <?php selected( $instance['currency'], 'USD' ); ?> >USD</option>
+  		<option <?php selected( $instance['currency'], 'EUR' ); ?> >EUR</option>
+  		<option <?php selected( $instance['currency'], 'RUB' ); ?> >RUB</option>
 	</select>
 	<?php
 }
@@ -80,15 +81,18 @@ public function widget( $args, $instance ) {
 	echo $before_widget;
 
 	if ( $title ) {
-		echo $before_title . $title . $after_title;
+		echo $before_title . $title . ' ' . date('d-m-Y') . $after_title;
 	}
 
 	if ( $currency ): ?>
-		<!-- PROext: Currency Imformer Begin -->
-		
-	<?php endif; ?>
-
-			<?php echo $after_widget;
+		<!-- PROext: Currency Imformer Begin --> <?php
+			$currency_array=json_decode(file_get_contents("http://resources.finance.ua/ru/public/currency-cash.json"),true) ;
+			//print_r($currency_array);
+			$buy = $currency_array['organizations'][0]['currencies'][$currency]['ask'];
+			$sale =  $currency_array['organizations'][0]['currencies'][$currency]['bid'];
+			printf('<div><h4 class="text-center">Валюта:%s</h4><span>Продаж: %s</span><br><span>Купівля: %s</span><div>',$currency,$buy,$sale);	
+	endif; 
+		echo $after_widget;
 		}
 	}
 
