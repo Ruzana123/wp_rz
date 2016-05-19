@@ -34,7 +34,7 @@ function rz_carrousel_post($attr, $content=''){
     foreach ($content as $key => $value) { 
 		$carrousel .= "<div class='item'>" . get_the_post_thumbnail($value['ID'],'thumbnail') . "<h4>"
 		. $value['post_title'] . "</h4><p>" . $value['post_excerpt'] ."</p><span>". 
-		$value['post_date'] . "</span><br><span> Post author:".get_the_author() ."</span>
+		$value['post_date'] . "</span><br><span> Post author:". get_author_name($value['post_author']) ."</span>
 		<br><span>Comment count:" . $value['comment_count'] . "</span><br><a href=".$value['guid'].">View Post</a></div>";
 	}
 	$carrousel .="</div>";
