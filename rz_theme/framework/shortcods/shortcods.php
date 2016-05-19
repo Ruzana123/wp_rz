@@ -21,26 +21,63 @@ function rz_color_text($attrs, $content = ''){
 //carrousel
 add_shortcode('carrousel_post', 'rz_carrousel_post' ); 
 
-function rz_carrousel_post($attr, $content=''){
+function rz_carrousel_post($attrs, $content=''){
 	$attrs = shortcode_atts(
 		array(
 			'title' => 'inherit',
-			'posts' => 'inherit'
+			'koll' => 'inherit',
+			'koll-it' => 'inherit',
+			'show-text' => false,
 		), $attrs
 	);
 	$content=wp_get_recent_posts();
 	//print_r($content);
-	$carrousel="<div class='owl-carousel' style='display:block'>";
-    foreach ($content as $key => $value) { 
-		$carrousel .= "<div class='item'>" . get_the_post_thumbnail($value['ID'],'thumbnail') . "<h4>"
-		. $value['post_title'] . "</h4><p>" . $value['post_excerpt'] ."</p><span>". 
-		$value['post_date'] . "</span><br><span> Post author:". get_author_name($value['post_author']) ."</span>
-		<br><span>Comment count:" . $value['comment_count'] . "</span><br><a href=".$value['guid'].">View Post</a></div>";
-	}
-	$carrousel .="</div>";
-	return $carrousel;
-
+	ob_start();?>
+		
+	<div class='owl-carousel' style='display:block'><?php
+	    foreach ($content as $key => $value) { 
+	    	while ($k < $attrs['koll']) {	
+				?><div class='item'>
+					<?php echo get_the_post_thumbnail($value['ID'],'thumbnail') ?>
+					<h4><?php echo $value['post_title'] ?></h4><?php
+					if ( $attrs['show-text']==true) {
+						?><p><?php echo $value['post_excerpt'] ?></p><?php
+					}
+					?><span><?php echo $value['post_date'] ?></span><br><span> Post author:<?php 
+					get_author_name($value['post_author']) ?></span>
+					<br><span>Comment count:<?php echo $value['comment_count']?></span>
+					<br><a href="<?php echo $value['guid'] ?>">View Post</a>
+				</div><?php
+				$k=$k+1;
+				break;
+			}
+		}?>
+	</div>
+	<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        $('.owl-carousel').owlCarousel({
+            loop:true,
+            margin:10,
+            nav:false,
+            autoHeight:true,
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:2
+                },
+                1000:{
+                    items:<?php echo $attrs['koll-it']; ?>
+                }
+            }
+        })
+        });
+    </script><?php
+	$output=ob_get_clean();
+	return $output;
 }
+
 
 //icon_box
 add_shortcode( 'icon_box', function( $attrs, $content = null ) {
@@ -66,9 +103,4 @@ add_shortcode( 'icon_box', function( $attrs, $content = null ) {
        ");
 	}
 );
-
-
-
-
 ?>
-
