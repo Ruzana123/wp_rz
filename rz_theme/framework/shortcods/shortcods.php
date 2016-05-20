@@ -30,29 +30,36 @@ function rz_carrousel_post($attrs, $content=''){
 			'show-text' => false,
 		), $attrs
 	);
-	$content=wp_get_recent_posts();
-	//print_r($content);
-	ob_start();?>
-		
-	<div class='owl-carousel' style='display:block'><?php
-	    foreach ($content as $key => $value) { 
-	    	while ($k < $attrs['koll']) {	
-				?><div class='item'>
-					<?php echo get_the_post_thumbnail($value['ID'],'thumbnail') ?>
-					<h4><?php echo $value['post_title'] ?></h4><?php
-					if ( $attrs['show-text']==true) {
-						?><p><?php echo $value['post_excerpt'] ?></p><?php
-					}
-					?><span><?php echo $value['post_date'] ?></span><br><span> Post author:<?php 
-					get_author_name($value['post_author']) ?></span>
-					<br><span>Comment count:<?php echo $value['comment_count']?></span>
-					<br><a href="<?php echo $value['guid'] ?>">View Post</a>
-				</div><?php
+
+
+$args = array(
+    'order' => 'DESC',
+    'orderby' => 'date',
+    'posts_per_page' => 6,
+);
+
+$query = new WP_Query( $args);
+	ob_start();	
+	?>	
+	<div class='owl-carousel'><?php
+	 	if( $query->have_posts() ) {
+	 		while($query->have_posts() && $k<$attrs['koll'] ){
+				$query->the_post();?>
+					<div class='item'>
+						<?php echo the_post_thumbnail(); ?>
+						<h4><?php the_title(); ?></h4><?php
+						if ( $attrs['show-text']==true) {
+							?><p><?php the_excerpt(); ?></p><?php
+						} ?>
+						<span><?php the_date(); ?></span><br>
+						<span> Author:<?php echo get_author_name(); ?></span>
+						<br><span><?php echo comments_number(); ?></span>
+						<br><a href="<?php the_permalink(); ?>">View Post</a>				
+					</div><?php
 				$k=$k+1;
-				break;
 			}
-		}?>
-	</div>
+		}
+	?></div>
 	<script type="text/javascript">
     jQuery(document).ready(function($) {
         $('.owl-carousel').owlCarousel({
@@ -73,8 +80,15 @@ function rz_carrousel_post($attrs, $content=''){
             }
         })
         });
-    </script><?php
+    </script>
+	<?php
+
+//wp_reset_postdata();
 	$output=ob_get_clean();
+
+
+	//$content=wp_get_recent_posts();
+	//print_r($content);
 	return $output;
 }
 
