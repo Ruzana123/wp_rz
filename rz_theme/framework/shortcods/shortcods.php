@@ -25,36 +25,40 @@ function rz_carrousel_post($attrs, $content=''){
 	$attrs = shortcode_atts(
 		array(
 			'title' => 'inherit',
-			'koll' => 'inherit',
-			'koll-it' => 'inherit',
+			'number_of_posts' => 'inherit',
+			'number_in_slide' => '1',
 			'show-text' => false,
 		), $attrs
 	);
 
+$number_of_posts = (int)$atts['number_of_posts'];
+$number_of_posts = ( $number_of_posts > 100 ) ? 10 : (($number_of_posts < 1) ? 1 : $number_of_posts);
 
 $args = array(
     'order' => 'DESC',
     'orderby' => 'date',
-    'posts_per_page' => 6,
+    'posts_per_page' => $number_of_posts,
 );
 
-$query = new WP_Query( $args);
+
+
+$post_query = new WP_Query( $args);
 	ob_start();	
-	?>	
+	?>
 	<div class='owl-carousel'><?php
-	 	if( $query->have_posts() ) {
-	 		while($query->have_posts() && $k<$attrs['koll'] ){
-				$query->the_post();?>
-					<div class='item'>
+	 	if( $post_query->have_posts() ) {
+	 		while($post_query->have_posts() ){
+				$post_query->the_post();?>
+					<div class='item' style='height: 550px;'>
 						<?php echo the_post_thumbnail(); ?>
 						<h4><?php the_title(); ?></h4><?php
 						if ( $attrs['show-text']==true) {
 							?><p><?php the_excerpt(); ?></p><?php
 						} ?>
 						<span><?php the_date(); ?></span><br>
-						<span> Author:<?php echo get_author_name(); ?></span>
+						<span><?php echo __('Author','rz_theme') . get_author_name(); ?></span>
 						<br><span><?php echo comments_number(); ?></span>
-						<br><a href="<?php the_permalink(); ?>">View Post</a>				
+						<br><a href="<?php the_permalink(); ?>"><?php echo __('View Post','rz_theme') ?></a>				
 					</div><?php
 				$k=$k+1;
 			}
@@ -75,7 +79,7 @@ $query = new WP_Query( $args);
                     items:2
                 },
                 1000:{
-                    items:<?php echo $attrs['koll-it']; ?>
+                    items:<?php echo (int)$attrs['number_in_slide']; ?>
                 }
             }
         })
@@ -85,7 +89,6 @@ $query = new WP_Query( $args);
 
 //wp_reset_postdata();
 	$output=ob_get_clean();
-
 
 	//$content=wp_get_recent_posts();
 	//print_r($content);
