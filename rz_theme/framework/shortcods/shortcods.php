@@ -18,14 +18,13 @@ function rz_color_text($attrs, $content = ''){
 	return ("<span style='color: " . $attrs['color'] . "'>$content</span>");
 }
 
-//carrousel
+//carrousel-post
 add_shortcode('carrousel_post', 'rz_carrousel_post' ); 
 
 function rz_carrousel_post($attrs, $content=''){
 	$attrs = shortcode_atts(
 		array(
-			'title' => 'inherit',
-			'number_of_posts' => 'inherit',
+			'number_of_posts' => '5',
 			'number_in_slide' => '1',
 			'show-text' => false,
 		), $attrs
@@ -45,28 +44,27 @@ $args = array(
 $post_query = new WP_Query( $args);
 	ob_start();	
 	?>
-	<div class='owl-carousel'><?php
+	<div class='owl-carousel-products'><?php
 	 	if( $post_query->have_posts() ) {
 	 		while($post_query->have_posts() ){
 				$post_query->the_post();?>
-					<div class='item' style='height: 550px;'>
-						<?php echo the_post_thumbnail(); ?>
-						<h4><?php the_title(); ?></h4><?php
-						if ( $attrs['show-text']==true) {
-							?><p><?php the_excerpt(); ?></p><?php
-						} ?>
-						<span><?php the_date(); ?></span><br>
-						<span><?php echo __('Author','rz_theme') . get_author_name(); ?></span>
-						<br><span><?php echo comments_number(); ?></span>
-						<br><a href="<?php the_permalink(); ?>"><?php echo __('View Post','rz_theme') ?></a>				
-					</div><?php
-				$k=$k+1;
+				<div class='item' style='height: 550px;'>
+					<?php echo the_post_thumbnail(); ?>
+					<h4><?php the_title(); ?></h4><?php
+					if ( $attrs['show-text']==true) {
+						?><p><?php the_excerpt(); ?></p><?php
+					} ?>
+					<span><?php the_date(); ?></span><br>
+					<span><?php echo __('Author','rz_theme') . get_author_name(); ?></span>
+					<br><span><?php echo comments_number(); ?></span>
+					<br><a href="<?php the_permalink(); ?>"><?php echo __('View Post','rz_theme') ?></a>				
+				</div><?php
 			}
 		}
 	?></div>
 	<script type="text/javascript">
     jQuery(document).ready(function($) {
-        $('.owl-carousel').owlCarousel({
+        $('.owl-carousel-products').owlCarousel({
             loop:true,
             margin:10,
             nav:false,
@@ -92,6 +90,78 @@ $post_query = new WP_Query( $args);
 
 	//$content=wp_get_recent_posts();
 	//print_r($content);
+	return $output;
+}
+
+
+//carrousel-products
+add_shortcode('carrousel_products', 'rz_carrousel_products' ); 
+
+function rz_carrousel_products($attrs, $content=''){
+	$attrs = shortcode_atts(
+		array(
+			'number_of_product' => '5',
+			'number_pr_in_slide' => '1',
+			'show-text' => false,
+		), $attrs
+	);
+
+$number_of_product = (int)$atts['number_of_product'];
+$number_of_product = ( $number_of_product > 100 ) ? 10 : (($number_of_product < 1) ? 1 : $number_of_product);
+
+$args = array(
+	'post_type' => 'product',
+    'order' => 'DESC',
+    'orderby' => 'date',
+    'product_per_page' => $number_of_product,
+);
+
+
+$product_query = new WP_Query( $args);
+	ob_start();	
+	?>
+	<div class='owl-carousel'><?php
+	 	if( $product_query->have_posts() ) {
+	 		while($product_query->have_posts() ){
+				$product_query->the_post();?>
+				<div class='item' style='height: 700px;'>
+					<?php echo the_post_thumbnail(); ?>
+					<h4><?php the_title(); ?></h4><?php
+					if ( $attrs['show-text']==true) {
+						?><p><?php the_excerpt(); ?></p><?php
+					} ?>
+					<span><?php the_date(); ?></span><br>
+					<span><?php echo get_author_name(); ?></span>
+					<br><span><?php comments_number(); ?></span>
+					<br><a href="<?php the_permalink(); ?>"><?php echo __('View Post','rz_theme') ?></a>				
+				</div><?php
+			}
+		}
+	?></div>
+	<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        $('.owl-carousel').owlCarousel({
+            loop:true,
+            margin:10,
+            nav:false,
+            autoHeight:true,
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:2
+                },
+                1000:{
+                    items:<?php echo (int)$attrs['number_pr_in_slide']; ?>
+                }
+            }
+        })
+        });
+    </script>
+	<?php
+
+	$output=ob_get_clean();
 	return $output;
 }
 
