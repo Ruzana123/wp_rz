@@ -259,12 +259,14 @@ if ( ! function_exists( 'rz_theme_scripts' ) ) {
         wp_register_script( 'rz_iq', SCRIPTS . '/jquery-1.12.3.min.js', array( 'jquery' ), false, true );
         wp_register_script( 'bootstrap-js', 'http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js', array( 'jquery' ), false, true );
         wp_register_script( 'rz_theme-custom', SCRIPTS . '/scripts.js', array( 'jquery' ), false, true );
+        wp_register_script( 'rz_theme-iso', SCRIPTS . '/isotope-docs.min.js', array( 'jquery' ), false, true );
 
         // Load the custom scripts
         wp_enqueue_script( 'rz_carusel' );
         wp_enqueue_script( 'rz_iq' );
         wp_enqueue_script( 'bootstrap-js' ); 
         wp_enqueue_script( 'rz_theme-custom' );
+        wp_enqueue_script( 'rz_theme-iso' );
         
 
         // Load the stylesheets
@@ -274,5 +276,28 @@ if ( ! function_exists( 'rz_theme_scripts' ) ) {
     }
 
     add_action( 'wp_enqueue_scripts', 'rz_theme_scripts' );
+}
+?>
+
+
+<!-- MY -->
+<?php 
+if ( ! function_exists( 'rz_sorting_products' ) ) {
+    function rz_sorting_products(){
+        ?>
+        <div class="isotope">
+            <h4>Sort products by category of this page</h4>
+            <ul id="filter" class="clearfix">
+                <li style="display:inline-block;"><a href="" class="current btn" data-filter="*">Default sorting</a></li>
+                <li style="display:inline-block;"><a href="" class="btn" data-filter=".product-cat-music">Music</a></li>
+                <li style="display:inline-block;"><a href="" class="btn" data-filter=".product-cat-albums">Albums</a></li>
+                <li style="display:inline-block;"><a href="" class="btn" data-filter=".product-cat-clothing">Clothing</a></li>
+                <li style="display:inline-block;"><a href="" class="btn" data-filter=".product-cat-posters">Posters</a></li>              
+            </ul>
+        </div>
+
+        <?php
+    }
+    add_action( 'woocommerce_before_main_content', 'rz_sorting_products' );
 }
 ?>
