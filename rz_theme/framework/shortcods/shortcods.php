@@ -126,13 +126,13 @@ $product_query = new WP_Query( $args);
 				$product_query->the_post();?>
 				<div class='item' style='height: 700px;'>
 					<?php woocommerce_show_product_thumbnails(); ?>
-					<h4><?php woocommerce_template_single_title(); ?></h4><?php
+					<h4><?php the_title(); ?></h4><?php
 					if ( $attrs['show-text']==true) {
 						?><p><?php woocommerce_template_single_excerpt(); ?></p><?php
 					} ?>
 					<span><?php woocommerce_template_loop_price(); ?></span>
-					<br><span><?php woocommerce_template_loop_rating(); ?></span>
-					<br><span><?php comments_number(); ?></span>
+					<span><?php woocommerce_template_loop_rating(); ?></span>
+					<span><?php comments_number(); ?></span>
 					<br><span><?php woocommerce_template_loop_add_to_cart(); ?></span>
 					<br><a href="<?php the_permalink(); ?>"><?php echo __('View Product','rz_theme') ?></a>				
 				</div><?php
