@@ -124,17 +124,16 @@ $product_query = new WP_Query( $args);
 	 	if( $product_query->have_posts() ) {
 	 		while($product_query->have_posts() ){
 				$product_query->the_post();?>
-				<div class='item' style='height: 700px;'>
+				<div class='item' style='height: 500px;'>
 					<?php woocommerce_show_product_thumbnails(); ?>
-					<h4><?php the_title(); ?></h4><?php
+					<a href="<?php the_permalink(); ?>"><h4><?php the_title(); ?></h4></a><?php
 					if ( $attrs['show-text']==true) {
 						?><p><?php woocommerce_template_single_excerpt(); ?></p><?php
 					} ?>
 					<span><?php woocommerce_template_loop_price(); ?></span>
 					<span><?php woocommerce_template_loop_rating(); ?></span>
 					<span><?php comments_number(); ?></span>
-					<br><span><?php woocommerce_template_loop_add_to_cart(); ?></span>
-					<br><a href="<?php the_permalink(); ?>"><?php echo __('View Product','rz_theme') ?></a>				
+					<br><span><?php woocommerce_template_loop_add_to_cart(); ?></span>			
 				</div><?php
 			}
 		}
