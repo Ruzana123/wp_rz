@@ -130,10 +130,11 @@ $product_query = new WP_Query( $args);
 					if ( $attrs['show-text']==true) {
 						?><p><?php the_excerpt(); ?></p><?php
 					} ?>
-					<span><?php the_date(); ?></span><br>
-					<span><?php echo get_author_name(); ?></span>
+					<span><?php woocommerce_template_loop_price(); ?></span>
+					<br><span><?php woocommerce_template_loop_rating(); ?></span>
 					<br><span><?php comments_number(); ?></span>
-					<br><a href="<?php the_permalink(); ?>"><?php echo __('View Post','rz_theme') ?></a>				
+					<br><span><?php woocommerce_template_loop_add_to_cart(); ?></span>
+					<br><a href="<?php the_permalink(); ?>"><?php echo __('View Product','rz_theme') ?></a>				
 				</div><?php
 			}
 		}
