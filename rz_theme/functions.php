@@ -285,14 +285,19 @@ if ( ! function_exists( 'rz_theme_scripts' ) ) {
 if ( ! function_exists( 'rz_sorting_products' ) ) {
     function rz_sorting_products(){
         ?>
+        <?php $terms =  array(
+            'taxonomy' => 'product_cat',
+            'orderby'      => 'name'
+        ) ;
+        $all_categories = get_categories( $terms );
+        ?>
         <div class="isotope" style="text-align:center;">
             <h4>Sort products by category of this page:</h4>
             <ul id="filter" class="clearfix">
                 <li style="display:inline-block;"><a href="" class="current btn" data-filter="*">Default sorting</a></li>
-                <li style="display:inline-block;"><a href="" class="btn" data-filter=".product-cat-music">Music</a></li>
-                <li style="display:inline-block;"><a href="" class="btn" data-filter=".product-cat-albums">Albums</a></li>
-                <li style="display:inline-block;"><a href="" class="btn" data-filter=".product-cat-clothing">Clothing</a></li>
-                <li style="display:inline-block;"><a href="" class="btn" data-filter=".product-cat-posters">Posters</a></li>              
+                <?php foreach ($all_categories as $cat) { ?>
+                    <li style="display:inline-block;"><a href="" class="btn" data-filter=".product-cat-<?php echo mb_strtolower($cat->name); ?>"><?php echo $cat->name ?></a></li>
+                <?php } ?>
             </ul>
         </div>
 
