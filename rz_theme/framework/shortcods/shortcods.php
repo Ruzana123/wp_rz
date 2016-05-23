@@ -125,10 +125,10 @@ $product_query = new WP_Query( $args);
 	 		while($product_query->have_posts() ){
 				$product_query->the_post();?>
 				<div class='item' style='height: 700px;'>
-					<?php echo the_post_thumbnail(); ?>
-					<h4><?php the_title(); ?></h4><?php
+					<?php woocommerce_show_product_thumbnails(); ?>
+					<h4><?php woocommerce_template_single_title(); ?></h4><?php
 					if ( $attrs['show-text']==true) {
-						?><p><?php the_excerpt(); ?></p><?php
+						?><p><?php woocommerce_template_single_excerpt(); ?></p><?php
 					} ?>
 					<span><?php woocommerce_template_loop_price(); ?></span>
 					<br><span><?php woocommerce_template_loop_rating(); ?></span>
