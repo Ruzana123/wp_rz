@@ -106,9 +106,6 @@ function rz_carrousel_products($attrs, $content=''){
 		), $attrs
 	);
 
-$number_of_product = (int)$atts['number_of_product'];
-$number_of_product = ( $number_of_product > 100 ) ? 10 : (($number_of_product < 1) ? 1 : $number_of_product);
-
 $args = array(
 	'post_type' => 'product',
     'order' => 'DESC',
@@ -153,7 +150,7 @@ $product_query = new WP_Query( $args);
                     items:2
                 },
                 1000:{
-                    items:<?php echo (int)$attrs['number_pr_in_slide']; ?>
+                    items:<?php echo $attrs['number_pr_in_slide']; ?>
                 }
             }
         })
