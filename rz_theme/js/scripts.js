@@ -1,6 +1,8 @@
 /**
  * Functions and scripts related to the theme.
  */
+
+            /*isotope*/
 	$(document).ready(function() {
 
     $('.products').isotope({

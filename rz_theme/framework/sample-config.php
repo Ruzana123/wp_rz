@@ -268,6 +268,42 @@
      * ---> START SECTIONS
      *
      */
+    
+
+
+
+        /*Change Logo*/
+    $section = array(
+        'title' => 'Basic Subsection Fields',
+        'id'    => 'basic-logo-subsection',
+        'desc'  => '',
+        'icon'  => 'el el-home'  
+    );
+    Redux::setSection($opt_name, $section);
+
+    // The subsection
+    $section = array(
+        'title'      => 'Change Logo',
+        'id'         => 'basic-change-logo',
+        'subsection' => true,
+        'desc'       => '',
+        'fields'     => array(
+            array(
+                'id'       => 'opt-change-logo-example',
+                'type'     => 'media',
+                'title'    => 'Change Logo',
+                'subtitle' => 'Subtitle',
+                'desc'     => 'Field Description',
+                'default'  => '1'
+            ),        
+        )
+    );
+    Redux::setSection($opt_name, $section);
+
+
+
+
+
 
     /*
 

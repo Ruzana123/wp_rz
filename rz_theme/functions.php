@@ -209,16 +209,16 @@ if ( ! function_exists( 'rz_theme_validate_length' ) ) {
 if ( ! function_exists( 'rz_theme_load_wp_head' ) ) {
     function rz_theme_load_wp_head() {
         // Get the logos
-        $logo = IMAGES . '/logo.png';
-        $logo_retina = IMAGES . '/logo@2x.png';
-
-        $logo_size = getimagesize( $logo );
+        /*$logo = IMAGES . '/logo.png';
+        $logo_retina = IMAGES . '/logo@2x.png';*/
+        global $redux_demo;
+        $logo_size = getimagesize( $redux_demo['opt-change-logo-example']['url']);
         ?>
         
         <!-- Logo CSS -->
         <style type="text/css">
             .site-logo a {
-                background: transparent url( <?php echo $logo; ?> ) 0 0 no-repeat;
+                background: transparent url( <?php echo $redux_demo['opt-change-logo-example']['url']; ?> ) 0 0 no-repeat;
                 width: <?php echo $logo_size[0] ?>px;
                 height: <?php echo $logo_size[1] ?>px;
                 display: inline-block;
@@ -280,29 +280,3 @@ if ( ! function_exists( 'rz_theme_scripts' ) ) {
 ?>
 
 
-<!-- MY -->
-<?php 
-if ( ! function_exists( 'rz_sorting_products' ) ) {
-    function rz_sorting_products(){
-        ?>
-        <?php $terms =  array(
-            'taxonomy' => 'product_cat',
-            'orderby'      => 'name'
-        ) ;
-        $all_categories = get_categories( $terms );
-        ?>
-        <div class="isotope" style="text-align:center;">
-            <h4>Sort products by category of this page:</h4>
-            <ul id="filter" class="clearfix">
-                <li style="display:inline-block;"><a href="" class="current btn" data-filter="*">Default sorting</a></li>
-                <?php foreach ($all_categories as $cat) { ?>
-                    <li style="display:inline-block;"><a href="" class="btn" data-filter=".product-cat-<?php echo mb_strtolower($cat->name); ?>"><?php echo $cat->name ?></a></li>
-                <?php } ?>
-            </ul>
-        </div>
-
-        <?php
-    }
-    add_action( 'woocommerce_before_main_content', 'rz_sorting_products' );
-}
-?>

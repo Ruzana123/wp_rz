@@ -1,4 +1,3 @@
-<!-- MY -->
 <?php 
 if ( ! function_exists( 'rz_sorting_products' ) ) {
     function rz_sorting_products(){
@@ -23,4 +22,4 @@ if ( ! function_exists( 'rz_sorting_products' ) ) {
     }
     add_action( 'woocommerce_before_main_content', 'rz_sorting_products' );
 }
-?>
+ ?>
