@@ -32,8 +32,8 @@ function rz_google_map($attrs, $content=''){
 		array(
 			'width' => '700px',
 			'height' => '500px',
-			'latitude' => '',
-			'longitude' => '', 
+			'latitude' => '40',
+			'longitude' => '50', 
 			'src'=> '' ),
 		$attrs );
 	?><div class="map" style="position:relative">
