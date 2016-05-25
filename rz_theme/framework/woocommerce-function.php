@@ -27,12 +27,14 @@ if ( ! function_exists( 'rz_sorting_products' ) ) {
 
 function rz_theme_get_options($arg1){
     global $rz_redux_demo;
-    if (!empty($rz_redux_demo)) {
+    /*if (!empty($rz_redux_demo)) {
        return $rz_redux_demo[$arg1];
     }
     else{
         return false;
-    }
+    }*/
+    $redux = (!empty($rz_redux_demo)) ? $rz_redux_demo[$arg1] :  false;
+    return $redux;
 }
 
 
