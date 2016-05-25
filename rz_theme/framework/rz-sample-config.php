@@ -267,8 +267,7 @@
      *
      * ---> START SECTIONS
      *
-     */
-    
+     */    
 
 
 
@@ -302,38 +301,6 @@
 
 
 
-
-
-
-   
-
-    /*
-     *
-     * YOU MUST PREFIX THE FUNCTIONS BELOW AND ACTION FUNCTION CALLS OR ANY OTHER CONFIG MAY OVERRIDE YOUR CODE.
-     *
-     */
-
-    /*
-    *
-    * --> Action hook examples
-    *
-    */
-
-    // If Redux is running as a plugin, this will remove the demo notice and links
-    //add_action( 'redux/loaded', 'remove_demo' );
-
-    // Function to test the compiler hook and demo CSS output.
-    // Above 10 is a priority, but 2 in necessary to include the dynamically generated CSS to be sent to the function.
-    //add_filter('redux/options/' . $opt_name . '/compiler', 'compiler_action', 10, 3);
-
-    // Change the arguments after they've been declared, but before the panel is created
-    //add_filter('redux/options/' . $opt_name . '/args', 'change_arguments' );
-
-    // Change the default value of a field after it's been set, but before it's been useds
-    //add_filter('redux/options/' . $opt_name . '/defaults', 'change_defaults' );
-
-    // Dynamically add a section. Can be also used to modify sections/fields
-    //add_filter('redux/options/' . $opt_name . '/sections', 'dynamic_section');
 
     /**
      * This is a test function that will let you see when the compiler hook occurs.

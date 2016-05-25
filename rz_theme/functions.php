@@ -211,14 +211,14 @@ if ( ! function_exists( 'rz_theme_load_wp_head' ) ) {
         // Get the logos
         /*$logo = IMAGES . '/logo.png';
         $logo_retina = IMAGES . '/logo@2x.png';*/
-        global $redux_demo;
-        $logo_size = getimagesize( $redux_demo['opt-change-logo-example']['url']);
+        $logo = rz_theme_get_options('opt-change-logo-example');
+        $logo_size = getimagesize( $logo['thumbnail'] );
         ?>
         
         <!-- Logo CSS -->
         <style type="text/css">
             .site-logo a {
-                background: transparent url( <?php echo $redux_demo['opt-change-logo-example']['url']; ?> ) 0 0 no-repeat;
+                background: transparent url( <?php echo $logo['thumbnail']; ?> ) 0 0 no-repeat;
                 width: <?php echo $logo_size[0] ?>px;
                 height: <?php echo $logo_size[1] ?>px;
                 display: inline-block;

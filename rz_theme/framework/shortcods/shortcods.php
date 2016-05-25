@@ -7,6 +7,82 @@ function rz_green_text($attr, $content=''){
 	echo '<p style="color:'.green.'">'.$content.'</p>';
 }
 
+/*map*/
+/*function do_googleMaps($atts, $content = null) { 
+	extract(shortcode_atts(
+		array( 'width' => '600', 
+			'height' => '500',
+			'latitude' => '',
+			'longitude' => '', 
+			'src'=> '' ),
+		$atts)); 
+	return '<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d10522.
+	366567425479!2d30.221931399999995!3d48.7514969!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.
+	1!5e0!3m2!1sru!2sua!4v1464176898702"
+	allowfullscreen></iframe>'; 
+}
+add_shortcode("googlemap1", "do_googleMaps");
+
+*/
+
+
+
+function rz_google_map($attrs, $content=''){
+	$attrs = shortcode_atts(
+		array(
+			'width' => '700px',
+			'height' => '500px',
+			'latitude' => '',
+			'longitude' => '', 
+			'src'=> '' ),
+		$attrs );
+	?><div class="map" style="position:relative">
+		<div id="map" style="height:<?php echo $attrs['height'] ?>; width:<?php echo $attrs['width'] ?>" class="map-for-you"></div>
+		<div class="overlay" onClick="style.pointerEvents='none'"></div>
+	</div> 
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA02p7KvZC-cHha3uaXG4-JquKNG-vOYak"></script>
+	<script type="text/javascript">
+		// When the window has finished loading create our google map below
+		google.maps.event.addDomListener(window, 'load', init);
+
+		function init() {
+		// Basic options for a simple Google Map
+		// For more options see: https://developers.google.com/maps/documentation/java..
+		var mapOptions = {
+		// How zoomed in you want the map to start at (always required)
+		zoom: 5,
+		// The latitude and longitude to center the map (always required)
+		// center: new google.maps.LatLng(40.6700, -73.9400), // New York
+		center: new google.maps.LatLng(<?php echo (float)$attrs['latitude']; ?>, <?php echo (float)$attrs['longitude']; ?>),
+		// How you would like to style the map.
+		// This is where you would paste any style found on Snazzy Maps.
+		styles: [{"featureType":"water","elementType":"geometry","stylers":[{"color":"#e9e9e9"},{"lightness":17}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#f5f5f5"},{"lightness":20}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffffff"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#ffffff"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":18}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":16}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#f5f5f5"},{"lightness":21}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#dedede"},{"lightness":21}]},{"elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#ffffff"},{"lightness":16}]},{"elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#333333"},{"lightness":40}]},{"elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#f2f2f2"},{"lightness":19}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#fefefe"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#fefefe"},{"lightness":17},{"weight":1.2}]}]
+		};
+
+		// Get the HTML DOM element that will contain your map
+		// We are using a div with id="map" seen below in the <body>
+		var mapElement = document.getElementById('map');
+
+		// Create the Google Map using our element and options defined above
+		var map = new google.maps.Map(mapElement, mapOptions);
+
+		// Let's also add a marker while we're at it
+		var marker = new google.maps.Marker({
+		position: new google.maps.LatLng(<?php echo (float)$attrs['latitude'] ?>,<?php echo (float)$attrs['longitude'] ?>),
+		map: map,
+		title: 'Snazzy!'
+		});
+}
+</script>   
+<?php }
+add_shortcode('googlemap','rz_google_map');	
+
+
+
+
+
+
+
 //color_text
 add_shortcode( 'color_text', 'rz_color_text' );
 function rz_color_text($attrs, $content = ''){
@@ -17,6 +93,8 @@ function rz_color_text($attrs, $content = ''){
 	);
 	return ("<span style='color: " . $attrs['color'] . "'>$content</span>");
 }
+
+
 
 //carrousel-post
 add_shortcode('carrousel_post', 'rz_carrousel_post' ); 
@@ -38,7 +116,6 @@ $args = array(
     'orderby' => 'date',
     'posts_per_page' => $number_of_posts,
 );
-
 
 
 $post_query = new WP_Query( $args);
