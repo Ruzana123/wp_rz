@@ -33,12 +33,11 @@ function rz_google_map($attrs, $content=''){
 			'width' => '700px',
 			'height' => '500px',
 			'latitude' => '40',
-			'longitude' => '50', 
-			'src'=> '' ),
+			'longitude' => '50'
+			),
 		$attrs );
 	?><div class="map" style="position:relative">
 		<div id="map" style="height:<?php echo $attrs['height'] ?>; width:<?php echo $attrs['width'] ?>" class="map-for-you"></div>
-		<div class="overlay" onClick="style.pointerEvents='none'"></div>
 	</div> 
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA02p7KvZC-cHha3uaXG4-JquKNG-vOYak"></script>
 	<script type="text/javascript">
