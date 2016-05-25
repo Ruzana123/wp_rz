@@ -228,4 +228,72 @@ add_shortcode( 'icon_box', function( $attrs, $content = null ) {
        ");
 	}
 );
+
+
+
+/*carrousel review*/
+add_shortcode('carrousel_reviews', 'rz_carrousel_reviews' ); 
+
+function rz_carrousel_reviews($attrs, $content=''){
+	$attrs = shortcode_atts(
+		array(
+			'number_of_review' => '5',
+			'number_reviews_in_slide' => '1',
+			'show-text' => false,
+		), $attrs
+	);
+
+$args = array(
+	'post_type' => 'review',
+    'order' => 'DESC',
+    'orderby' => 'date',
+    'reviews_per_page' => $number_of_reviews,
+);
+
+$review_query = new WP_Query( $args);
+	ob_start();	
+	?>
+	<div class='owl-carousel-reviews'><?php
+	 	if( $review_query->have_posts() ) {
+	 		while($review_query->have_posts() ){
+				$review_query->the_post();?>
+				<div class='item' style='height: 200px;'>
+					<a href="<?php the_permalink(); ?>"><h4><?php the_title(); ?></h4></a><?php
+					if ( $attrs['show-text']==true) {
+						?><p><?php the_excerpt(); ?></p><?php
+					} ?>
+					<span><?php the_date(); ?></span><br>
+					<span><?php echo __('Author','rz_theme') . get_author_name(); ?></span>
+					<br><span><?php echo comments_number(); ?></span>
+					<br><a href="<?php the_permalink(); ?>"><?php echo __('View Review','rz_theme') ?></a>	
+				</div><?php
+			}
+		}
+	?></div>
+	<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        $('.owl-carousel-reviews').owlCarousel({
+            loop:true,
+            margin:10,
+            nav:false,
+            autoHeight:true,
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:2
+                },
+                1000:{
+                    items:<?php echo $attrs['number_reviews_in_slide']; ?>
+                }
+            }
+        })
+        });
+    </script>
+	<?php
+
+	$output=ob_get_clean();
+	return $output;
+}
 ?>
