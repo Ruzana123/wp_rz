@@ -23,7 +23,7 @@ function rz_theme_green_text() {
             "holder" => "div",
             "class" => "",
             "heading" => __( "Content", "rz_theme" ),
-            "param_name" => "content",
+            "param_name" => "content", 
             "value" => __( "<p style='color:'.green.''>I am test text block.</p>", "rz_theme" ),
             "description" => __( "Enter your content.", "rz_theme" )
         )

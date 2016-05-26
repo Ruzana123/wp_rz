@@ -7,4 +7,4 @@ function rz_theme_get_options($arg1){
     return $redux;
 }
 
-?>
+?> 
