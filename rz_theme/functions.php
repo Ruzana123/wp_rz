@@ -4,7 +4,7 @@
 */
 
 /**
- * 1.0 - Define constants.
+ *  - Define constants.
 */
 
 define('THEMEROOT',get_stylesheet_directory_uri());
@@ -13,13 +13,13 @@ define('SCRIPTS',THEMEROOT .'/js');
 define('FRAMEWORK',get_template_directory() .'/framework');
 
 /**
- * 2.0 - Load the framework.
+ * - Load the framework.
 */
 
 require_once( FRAMEWORK . '/init.php');
 
 /**
- * 3.0 - Set up the content width value based on the theme's design.
+ * - Set up the content width value based on the theme's design.
 */
 
 if (! isset($content_width)) {
@@ -27,7 +27,7 @@ if (! isset($content_width)) {
 }
 
 /**
- * 4.0 - Set up theme default and register various supported features.
+ *  - Set up theme default and register various supported features.
 */
 
 if (! function_exists('rz_theme_setup')) {
@@ -77,7 +77,7 @@ if (! function_exists('rz_theme_setup')) {
 }
 
 /**
- * 5.0 - Display meta information for a specific post.
+ *  - Display meta information for a specific post.
 */
 
 if ( ! function_exists( 'rz_theme_post_meta()' ) ){
@@ -131,7 +131,7 @@ if ( ! function_exists( 'rz_theme_post_meta()' ) ){
 }
 
 /**
- * 6.0 - Display navigation to the next/previous set of posts.
+ *  - Display navigation to the next/previous set of posts.
 */
 
 if ( ! function_exists( 'rz_theme_paging_nav' ) ) {
@@ -154,7 +154,7 @@ if ( ! function_exists( 'rz_theme_paging_nav' ) ) {
 }
 
 /**
- * 7.0 - Register the widget areas.
+ *  - Register the widget areas.
 */
 
 if ( !function_exists( 'rz_theme_widget_init' ) ) {
@@ -190,7 +190,7 @@ if ( !function_exists( 'rz_theme_widget_init' ) ) {
 }
 
 /**
- * 8.0 - Register the widget areas.
+ *  - Register the widget areas.
 */
 
 if ( ! function_exists( 'rz_theme_validate_length' ) ) {
@@ -202,7 +202,7 @@ if ( ! function_exists( 'rz_theme_validate_length' ) ) {
 
 /**
  * ----------------------------------------------------------------------------------------
- * 9.0 - Include the generated CSS in the page header.
+ *  - Include the generated CSS in the page header.
  * ----------------------------------------------------------------------------------------
  */
 
@@ -243,7 +243,7 @@ if ( ! function_exists( 'rz_theme_load_wp_head' ) ) {
 
 /**
  * ----------------------------------------------------------------------------------------
- * 10.0 - Load the custom scripts for the theme.
+ *  - Load the custom scripts for the theme.
  * ----------------------------------------------------------------------------------------
  */
 
@@ -277,6 +277,8 @@ if ( ! function_exists( 'rz_theme_scripts' ) ) {
 
     add_action( 'wp_enqueue_scripts', 'rz_theme_scripts' );
 }
+
+
 ?>
 
 
