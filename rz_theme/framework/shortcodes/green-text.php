@@ -7,7 +7,7 @@ function rz_green_text($attr, $content=''){
 	echo '<p style="color:'.green.'">'.$content.'</p>';
 }
 
-/*Registration shortcod in Visual Composer*/
+/*Registration shortcod - green_text in Visual Composer*/
 add_action( 'vc_before_init', 'rz_theme_green_text' );
 function rz_theme_green_text() {
    vc_map( array(

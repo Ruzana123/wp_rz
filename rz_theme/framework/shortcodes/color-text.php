@@ -13,7 +13,7 @@ function rz_color_text($attrs, $content = ''){
 
 
 
-/*Registration shortcod in Visual Composer*/
+/*Registration shortcod - color_text in Visual Composer*/
 add_action( 'vc_before_init', 'rz_theme_color_text' );
 function rz_theme_color_text() {
    vc_map( array(

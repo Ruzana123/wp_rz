@@ -1,6 +1,6 @@
 <?php 
 
-//carrousel-post
+//owl-carrousel-post
 add_shortcode('carrousel_post', 'rz_carrousel_post' ); 
 
 function rz_carrousel_post($attrs, $content=''){
@@ -44,24 +44,24 @@ $post_query = new WP_Query( $args);
 		}
 	?></div>
 	<script type="text/javascript">
-    jQuery(document).ready(function($) {
-        $('.owl-carousel-products').owlCarousel({
-            loop:true,
-            margin:10,
-            nav:false,
-            autoHeight:true,
-            responsive:{
-                0:{
-                    items:1
-                },
-                600:{
-                    items:2
-                },
-                1000:{
-                    items:<?php echo (int)$attrs['number_in_slide']; ?>
+        jQuery(document).ready(function($) {
+            $('.owl-carousel-products').owlCarousel({
+                loop:true,
+                margin:10,
+                nav:false,
+                autoHeight:true,
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    600:{
+                        items:2
+                    },
+                    1000:{
+                        items:<?php echo (int)$attrs['number_in_slide']; ?>
+                    }
                 }
-            }
-        })
+            })
         });
     </script>
 	<?php
@@ -77,17 +77,17 @@ $post_query = new WP_Query( $args);
 
 
 
-/*Registration shortcod in Visual Composer*/
+/*Registration shortcod - carrousel_post in Visual Composer*/
 add_action( 'vc_before_init', 'rz_theme_carrousel_post' );
 function rz_theme_carrousel_post() {
    vc_map( array(
-      "name" => __( "Carrousel post", "rz_theme" ),
-      "base" => "carrousel_post",
-      "class" => "",
-      "category" => __( "Content", "rz_theme"),
-      'admin_enqueue_js' => array(get_template_directory_uri().'/vc_extend/bartag.js'),
-      'admin_enqueue_css' => array(get_template_directory_uri().'/vc_extend/bartag.css'),
-      "params" => array(
+       "name" => __( "Carrousel post", "rz_theme" ),
+       "base" => "carrousel_post",
+       "class" => "",
+       "category" => __( "Content", "rz_theme"),
+       'admin_enqueue_js' => array(get_template_directory_uri().'/vc_extend/bartag.js'),
+       'admin_enqueue_css' => array(get_template_directory_uri().'/vc_extend/bartag.css'),
+       "params" => array(
        	array(
             "type" => "textfield",
             "class" => "",
@@ -111,7 +111,7 @@ function rz_theme_carrousel_post() {
             "description" => __( "Show text (true or false)", "rz_theme" )
         ),
       )
-   ) );
+    ) );
 }
 
  ?>

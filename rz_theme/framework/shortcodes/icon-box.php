@@ -27,7 +27,7 @@ add_shortcode( 'icon_box', function( $attrs, $content = null ) {
 
 
 
-/*Registration shortcod in Visual Composer*/
+/*Registration shortcod - icon_box in Visual Composer*/
 add_action( 'vc_before_init', 'rz_theme_icon_box' );
 function rz_theme_icon_box() {
    vc_map( array(

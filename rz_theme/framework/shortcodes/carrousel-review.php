@@ -1,6 +1,6 @@
 <?php 
 
-/*carrousel review*/
+//owl-carrousel-reviews
 add_shortcode('carrousel_reviews', 'rz_carrousel_reviews' ); 
 
 function rz_carrousel_reviews($attrs, $content=''){
@@ -40,24 +40,24 @@ $review_query = new WP_Query( $args);
 		}
 	?></div>
 	<script type="text/javascript">
-    jQuery(document).ready(function($) {
-        $('.owl-carousel-reviews').owlCarousel({
-            loop:true,
-            margin:10,
-            nav:false,
-            autoHeight:true,
-            responsive:{
-                0:{
-                    items:1
-                },
-                600:{
-                    items:2
-                },
-                1000:{
-                    items:<?php echo $attrs['number_reviews_in_slide']; ?>
+        jQuery(document).ready(function($) {
+            $('.owl-carousel-reviews').owlCarousel({
+                loop:true,
+                margin:10,
+                nav:false,
+                autoHeight:true,
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    600:{
+                        items:2
+                    },
+                    1000:{
+                        items:<?php echo $attrs['number_reviews_in_slide']; ?>
+                    }
                 }
-            }
-        })
+            })
         });
     </script>
 	<?php
@@ -68,7 +68,7 @@ $review_query = new WP_Query( $args);
 
 
 
-/*Registration shortcod in Visual Composer*/
+/*Registration shortcod - carrousel_reviews in Visual Composer*/
 add_action( 'vc_before_init', 'rz_theme_carrousel_reviews' );
 function rz_theme_carrousel_reviews() {
    vc_map( array(

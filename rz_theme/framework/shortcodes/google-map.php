@@ -21,7 +21,7 @@ function rz_google_map($attrs, $content=''){
 add_shortcode('googlemap','rz_google_map');	
 
 
-/*Registration shortcod in Visual Composer*/
+/*Registration shortcod - googlemap in Visual Composer*/
 add_action( 'vc_before_init', 'rz_theme_google_map' );
 function rz_theme_google_map() {
    vc_map( array(

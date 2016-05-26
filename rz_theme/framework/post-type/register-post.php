@@ -1,6 +1,6 @@
 <?php 
 
-// Register Custom Post Type
+// Register Post Type - Review
 function rz_theme_post_review() {
     $labels = array(
         'name'                  => _x( 'Review', 'Post Type General Name', 'text_domain' ),
