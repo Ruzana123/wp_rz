@@ -36,7 +36,6 @@ if ( ! function_exists( 'rz_theme_google_map' ) ) {
             });
         });
     </script> 
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
   <?php } 
 
   add_shortcode('googlemap','rz_theme_google_map'); 
