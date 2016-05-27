@@ -8,7 +8,7 @@ require_once( FRAMEWORK . '/widgets/widget-business-hours.php' );
 require_once( FRAMEWORK . '/widgets/widget-weather.php' );
 require_once( FRAMEWORK . '/widgets/widget-currency-converter.php' );
 require_once( FRAMEWORK . '/woocommerce-function.php' );
-require_once( FRAMEWORK . '/rz-sample-config.php' );
+require_once( FRAMEWORK . '/redux-config.php' );
 require_once( FRAMEWORK . '/shortcodes/carrousel-post.php' );
 require_once( FRAMEWORK . '/shortcodes/carrousel-products.php' );
 require_once( FRAMEWORK . '/shortcodes/carrousel-review.php' );

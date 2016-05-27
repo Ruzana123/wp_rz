@@ -13,7 +13,6 @@ if ( ! function_exists( 'rz_theme_sorting_products' ) ) {
         if (is_shop()) {
           ?>
             <div class="isotope" style="text-align:center;">
-                <h4>Sort products by category of this page:</h4>
                 <ul id="filter" class="clearfix">
                     <li style="display:inline-block;"><a href="" class="current btn" data-filter="*"><?php echo __('Default sorting','rz_theme') ?></a></li>
                     <?php foreach ($all_categories as $cat) { ?>
