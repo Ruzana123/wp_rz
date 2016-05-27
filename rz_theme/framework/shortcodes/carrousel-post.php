@@ -1,7 +1,6 @@
 <?php 
 
 //owl-carrousel-post
-add_shortcode('carrousel_post', 'rz_theme_owl_carrousel_post' ); 
 if ( ! function_exists( 'rz_theme_owl_carrousel_post' ) ) {
     function rz_theme_owl_carrousel_post($attrs, $content=''){
     	$attrs = shortcode_atts(
@@ -73,13 +72,13 @@ if ( ! function_exists( 'rz_theme_owl_carrousel_post' ) ) {
     	//print_r($content);
     	return $output;
     }
+    add_shortcode('carrousel_post', 'rz_theme_owl_carrousel_post' ); 
 }
 
 
 
 
 /*Registration shortcod - carrousel_post in Visual Composer*/
-add_action( 'vc_before_init', 'rz_theme_carrousel_post' );
 if ( ! function_exists( 'rz_theme_carrousel_post' ) ) {
     function rz_theme_carrousel_post() {
        vc_map( array(
@@ -115,6 +114,7 @@ if ( ! function_exists( 'rz_theme_carrousel_post' ) ) {
           )
         ) );
     }
+    add_action( 'vc_before_init', 'rz_theme_carrousel_post' );
 }
 
  ?>

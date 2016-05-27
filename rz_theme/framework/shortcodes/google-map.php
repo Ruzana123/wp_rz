@@ -15,16 +15,35 @@ if ( ! function_exists( 'rz_theme_google_map' ) ) {
   	$width=(int)$attrs['width'];
   	$latitude=(float)$attrs['latitude'];
   	$longitude=(float)$attrs['longitude'];
-  	?><div class="map" style="position:relative">
-  		<iframe src='http://3planeta.com/map.html?14,<?php echo (float)$attrs['latitude'] ?>,<?php echo (float)$attrs['longitude'] ?>,2,1' width=<?php echo $width .'px' ?> height=<?php echo $height .'px' ?> frameborder=no > </iframe>
-  	</div>  
-  <?php }
+  	?><div class="map" style="width:<?php echo $width . 'px' ?>; height:<?php echo $height . 'px' ?>">
+  	</div>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $('.map').gMap(
+                {
+                    latitude: <?php echo $latitude ?>,
+                    longitude: <?php echo $longitude ?>,
+                    maptype: 'TERRAIN',
+                    zoom: 8,
+                    controls: {
+                        panControl: true,
+                        zoomControl: false,
+                        mapTypeControl: true,
+                        scaleControl: false,
+                        streetViewControl: false,
+                        overviewMapControl: false
+                    }
+            });
+        });
+    </script> 
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+  <?php } 
+
+  add_shortcode('googlemap','rz_theme_google_map'); 
 }
-add_shortcode('googlemap','rz_theme_google_map');	
 
 
 /*Registration shortcod - googlemap in Visual Composer*/
-add_action( 'vc_before_init', 'rz_theme_composer_google_map' );
 if ( ! function_exists( 'rz_theme_composer_google_map' ) ) {
   function rz_theme_composer_google_map() {
      vc_map( array(
@@ -40,7 +59,7 @@ if ( ! function_exists( 'rz_theme_composer_google_map' ) ) {
               "class" => "",
               "heading" => __( "Width", "rz_theme" ),
               "param_name" => "width",
-              "value" => '500',
+              "value" => "500",
               "description" => __( "width map", "rz_theme" )
           ),
           array(
@@ -48,7 +67,7 @@ if ( ! function_exists( 'rz_theme_composer_google_map' ) ) {
               "class" => "",
               "heading" => __( "Height", "rz_theme" ),
               "param_name" => "height",
-              "value" => '600',
+              "value" => "600",
               "description" => __( "height map", "rz_theme" )
           ),
           array(
@@ -56,7 +75,7 @@ if ( ! function_exists( 'rz_theme_composer_google_map' ) ) {
               "class" => "",
               "heading" => __( "Latitude", "rz_theme" ),
               "param_name" => "latitude",
-              "value" => '50',
+              "value" => "50",
               "description" => __( "latitude", "rz_theme" )
           ),
           array(
@@ -64,11 +83,12 @@ if ( ! function_exists( 'rz_theme_composer_google_map' ) ) {
               "class" => "",
               "heading" => __( "Longitude", "rz_theme" ),
               "param_name" => "longitude",
-              "value" => '50',
+              "value" => "50",
               "description" => __( "longitude", "rz_theme" )
           ),
         )
      ) );
   }
+  add_action( 'vc_before_init', 'rz_theme_composer_google_map' );
 }
 ?>

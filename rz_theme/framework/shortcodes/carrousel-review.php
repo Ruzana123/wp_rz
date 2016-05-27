@@ -1,7 +1,6 @@
 <?php 
 
 //owl-carrousel-reviews
-add_shortcode('carrousel_reviews', 'rz_theme_owl_carrousel_reviews' ); 
 if ( ! function_exists( 'rz_theme_owl_carrousel_reviews' ) ) {
     function rz_theme_owl_carrousel_reviews($attrs, $content=''){
     	$attrs = shortcode_atts(
@@ -65,12 +64,12 @@ if ( ! function_exists( 'rz_theme_owl_carrousel_reviews' ) ) {
     	$output=ob_get_clean();
     	return $output;
     }
+    add_shortcode('carrousel_reviews', 'rz_theme_owl_carrousel_reviews' ); 
 }
 
 
 
 /*Registration shortcod - carrousel_reviews in Visual Composer*/
-add_action( 'vc_before_init', 'rz_theme_carrousel_reviews' );
 if ( ! function_exists( 'rz_theme_carrousel_reviews' ) ) {
     function rz_theme_carrousel_reviews() {
        vc_map( array(
@@ -108,6 +107,7 @@ if ( ! function_exists( 'rz_theme_carrousel_reviews' ) ) {
           )
        ) );
     }
+    add_action( 'vc_before_init', 'rz_theme_carrousel_reviews' );
 }
 
 ?>

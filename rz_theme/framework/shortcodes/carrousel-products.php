@@ -1,7 +1,6 @@
 <?php 
 
 //owl-carrousel-products
-add_shortcode('carrousel_products', 'rz_theme_owl_carrousel_products' ); 
 if ( ! function_exists( 'rz_theme_owl_carrousel_products' ) ) {
     function rz_theme_owl_carrousel_products($attrs, $content=''){
     	$attrs = shortcode_atts(
@@ -67,12 +66,12 @@ if ( ! function_exists( 'rz_theme_owl_carrousel_products' ) ) {
     	$output=ob_get_clean();
     	return $output;
     }
+    add_shortcode('carrousel_products', 'rz_theme_owl_carrousel_products' ); 
 }
 
 
 
 /*Registration shortcod - carrousel_products in Visual Composer*/
-add_action( 'vc_before_init', 'rz_theme_carrousel_products' );
 if ( ! function_exists( 'rz_theme_carrousel_products' ) ) {
     function rz_theme_carrousel_products() {
        vc_map( array(
@@ -108,6 +107,7 @@ if ( ! function_exists( 'rz_theme_carrousel_products' ) ) {
           )
         ) );
     }
+    add_action( 'vc_before_init', 'rz_theme_carrousel_products' );
 }
 
 ?>
