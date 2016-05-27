@@ -1,5 +1,5 @@
 <?php 
-
+ 
 //owl-carrousel-post
 if ( ! function_exists( 'rz_theme_owl_carrousel_post' ) ) {
     function rz_theme_owl_carrousel_post($attrs, $content=''){

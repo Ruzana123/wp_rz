@@ -1,5 +1,5 @@
 <?php
-
+ 
 //green_text
 if ( ! function_exists( 'rz_theme_green_text' ) ) {
    function rz_theme_green_text($attr, $content=''){

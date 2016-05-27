@@ -1,5 +1,5 @@
 <?php 
-
+ 
 //icon_box
 add_shortcode( 'icon_box', function( $attrs, $content = null ) {
 	$attrs = shortcode_atts(

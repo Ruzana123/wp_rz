@@ -10,7 +10,7 @@ if ( ! function_exists( 'rz_theme_owl_carrousel_reviews' ) ) {
     			'show_text' => false,
     		), $attrs
     	);
-
+   
     $args = array(
     	'post_type' => 'review',
         'order' => 'DESC',
