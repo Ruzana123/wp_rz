@@ -16,7 +16,6 @@
     $opt_name = apply_filters( 'rz_redux_demo/opt_name', $opt_name );
 
 
-
     /**
      * ---> SET ARGUMENTS
      * All the possible arguments for Redux.
@@ -146,8 +145,6 @@
      * ---> START SECTIONS
      *
      */    
-
-
 
         /*Change Logo*/
     $section = array(
