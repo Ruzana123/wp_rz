@@ -51,7 +51,7 @@ if ( ! function_exists( 'rz_theme_post_review' ) ){
         );
         register_post_type( 'Review', $args );
     }
+    add_action( 'init', 'rz_theme_post_review', 0 );
 }
-add_action( 'init', 'rz_theme_post_review', 0 );
 
  ?>
