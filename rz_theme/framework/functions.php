@@ -9,4 +9,20 @@ if ( ! function_exists( 'rz_theme_get_options' ) ) {
 	}
 }
 
+function is_logged_in(){
+    if (!isset($_SESSION['username'])) {
+        return false; 
+    } 
+    else {
+        return true; 
+    }
+}
+
+function get_username() {
+    if(is_logged_in()){
+        return $_SESSION['username']; 
+    }  
+    else return false; 
+};
+
 ?> 
