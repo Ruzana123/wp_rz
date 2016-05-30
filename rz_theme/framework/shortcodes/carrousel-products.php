@@ -11,6 +11,8 @@ if ( ! function_exists( 'rz_theme_owl_carrousel_products' ) ) {
     		), $attrs
     	);
 
+    $number_of_product=(int)$atts['number_of_product'];
+
     $args = array(
     	'post_type' => 'product',
         'order' => 'DESC',
@@ -18,6 +20,8 @@ if ( ! function_exists( 'rz_theme_owl_carrousel_products' ) ) {
         'product_per_page' => $number_of_product,
     );
 
+    $number_pr_in_slide = (int)$atts['number_pr_in_slide'];
+    $number_pr_in_slide = ( $number_pr_in_slide > 10 ) ? 5 : (($number_pr_in_slide < 1) ? 1 : $number_pr_in_slide);
 
     $product_query = new WP_Query( $args);
     	ob_start();	

@@ -11,6 +11,8 @@ if ( ! function_exists( 'rz_theme_owl_carrousel_reviews' ) ) {
     		), $attrs
     	);
    
+    $number_of_reviews = (int)$atts['number_of_review'];
+
     $args = array(
     	'post_type' => 'review',
         'order' => 'DESC',
