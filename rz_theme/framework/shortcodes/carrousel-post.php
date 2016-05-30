@@ -12,7 +12,9 @@ if ( ! function_exists( 'rz_theme_owl_carrousel_post' ) ) {
     	);
 
     $number_of_posts = (int)$atts['number_of_posts'];
-    $number_of_posts = ( $number_of_posts > 100 ) ? 10 : (($number_of_posts < 1) ? 1 : $number_of_posts);
+
+    $number_in_slide = (int)$atts['number_in_slide'];
+    $number_in_slide = ( $number_in_slide > 10 ) ? 5 : (($number_in_slide < 1) ? 1 : $number_in_slide);
 
     $args = array(
         'order' => 'DESC',
@@ -57,7 +59,7 @@ if ( ! function_exists( 'rz_theme_owl_carrousel_post' ) ) {
                             items:2
                         },
                         1000:{
-                            items:<?php echo (int)$attrs['number_in_slide']; ?>
+                            items:<?php echo $number_in_slide  ?>
                         }
                     }
                 })
