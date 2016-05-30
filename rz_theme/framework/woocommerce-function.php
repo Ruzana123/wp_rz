@@ -3,8 +3,7 @@
 /*Filter Isotope on shop page / Sorting products*/
 if ( ! function_exists( 'rz_theme_sorting_products' ) ) {
     function rz_theme_sorting_products(){
-        ?>
-        <?php $terms =  array(
+        $terms =  array(
             'taxonomy' => 'product_cat',
             'orderby'      => 'name'
         ) ;
