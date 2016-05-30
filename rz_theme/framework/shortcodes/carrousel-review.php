@@ -77,8 +77,6 @@ if ( ! function_exists( 'rz_theme_carrousel_reviews' ) ) {
           "base" => "carrousel_reviews",
           "class" => "",
           "category" => __( "Content", "rz_theme"),
-          'admin_enqueue_js' => array(get_template_directory_uri().'/vc_extend/bartag.js'),
-          'admin_enqueue_css' => array(get_template_directory_uri().'/vc_extend/bartag.css'),
           "params" => array(
            	array(
                 "type" => "textfield",

@@ -16,8 +16,6 @@ if ( ! function_exists( 'rz_theme_composer_green_text' ) ) {
          "base" => "green_text",
          "class" => "",
          "category" => __( "Content", "rz_theme"),
-         'admin_enqueue_js' => array(get_template_directory_uri().'/vc_extend/bartag.js'),
-         'admin_enqueue_css' => array(get_template_directory_uri().'/vc_extend/bartag.css'),
          "params" => array(
             array(
                "type" => "textarea_html",

@@ -19,20 +19,19 @@ if ( ! function_exists( 'rz_theme_google_map' ) ) {
   	</div>
     <script type="text/javascript">
         jQuery(document).ready(function($) {
-            $('.map').gMap(
-                {
-                    latitude: <?php echo $latitude ?>,
-                    longitude: <?php echo $longitude ?>,
-                    maptype: 'TERRAIN',
-                    zoom: 8,
-                    controls: {
-                        panControl: true,
-                        zoomControl: false,
-                        mapTypeControl: true,
-                        scaleControl: false,
-                        streetViewControl: false,
-                        overviewMapControl: false
-                    }
+            $('.map').gMap({
+                latitude: <?php echo $latitude ?>,
+                longitude: <?php echo $longitude ?>,
+                maptype: 'TERRAIN',
+                zoom: 8,
+                controls: {
+                    panControl: true,
+                    zoomControl: false,
+                    mapTypeControl: true,
+                    scaleControl: false,
+                    streetViewControl: false,
+                    overviewMapControl: false
+                }
             });
         });
     </script> 
