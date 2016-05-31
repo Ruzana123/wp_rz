@@ -13,7 +13,7 @@
 
 <?php
 class RZ_Theme_Widget_Currency_Converter extends WP_Widget {
-		/**
+	/**
 	* Specifies the widget name, description, class name and instatiates it.
 	*/
 	public function __construct() {

@@ -11,6 +11,7 @@ if ( ! function_exists( 'rz_theme_owl_carrousel_post' ) ) {
     		), $attrs
     	);
 
+    $number_of_posts = (int)$atts['number_of_posts'];
 
     $number_in_slide = (int)$atts['number_in_slide'];
     $number_in_slide = ( $number_in_slide > 10 ) ? 5 : (($number_in_slide < 1) ? 1 : $number_in_slide);
@@ -18,7 +19,7 @@ if ( ! function_exists( 'rz_theme_owl_carrousel_post' ) ) {
     $args = array(
         'order' => 'DESC',
         'orderby' => 'date',
-        'posts_per_page' => (int)$atts['number_of_posts'],
+        'posts_per_page' => $number_of_posts,
     );
 
 

@@ -26,62 +26,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <?php 
 
-	$client_id = '5384665'; // ID приложения
-    $client_secret = 'Zs3mdTvrB4B2FoemXkFl'; // Защищённый ключ
-    $redirect_uri = 'http://student4.e-u.org.ua/ruzana/elements/wordpress/rz-sub-site/my-account/'; // Адрес сайта
-
     $url = 'http://oauth.vk.com/authorize';
 
     $params = array(
-        'client_id'     => $client_id,
-        'redirect_uri'  => $redirect_uri,
-        'response_type' => 'code'
+        'client_id'     => CLIENT_ID,
+        'redirect_uri'  => REDIRECT_URI,
+        'response_type' => 'code',
+        'scope'         => 'email'
     );
 
     echo $link = '<p><a href="' . $url . '?' . urldecode(http_build_query($params)) . '">Аутентификация через ВКонтакте</a></p>';
-
-if (isset($_GET['code'])) {
-    $result = false;
-    $params = array(
-        'client_id' => $client_id,
-        'client_secret' => $client_secret,
-        'code' => $_GET['code'],
-        'redirect_uri' => $redirect_uri
-    );
-
-    $token = json_decode(file_get_contents('https://oauth.vk.com/access_token' . '?' . urldecode(http_build_query($params))), true);
-
-    if (isset($token['access_token'])) {
-        $params = array(
-            'uids'         => $token['user_id'],
-            'fields'       => 'uid,first_name,last_name,screen_name,sex,bdate,photo_big',
-            'access_token' => $token['access_token']
-        );
-
-        $userInfo = json_decode(file_get_contents('https://api.vk.com/method/users.get' . '?' . urldecode(http_build_query($params))), true);
-        if (isset($userInfo['response'][0]['uid'])) {
-            $userInfo = $userInfo['response'][0];
-            $result = true;
-        }
-    }
-    session_start();
-   	if ($result) {
-        //echo "Социальный ID пользователя: " . $userInfo['uid'] . '<br />';
-        echo $userInfo['first_name'] . '<br />';
-       /* echo "Ссылка на профиль пользователя: " . $userInfo['screen_name'] . '<br />';
-        echo "Пол пользователя: " . $userInfo['sex'] . '<br />';
-        echo "День Рождения: " . $userInfo['bdate'] . '<br />';*/
-        echo '<img src="' . $userInfo['photo_big'] . '" />'; echo "<br />";
-    }
-    $rus=array('А','Б','В','Г','Д','Е','Ё','Ж','З','И','Й','К','Л','М','Н','О','П','Р','С','Т','У','Ф','Х','Ц','Ч','Ш','Щ','Ъ','Ы','Ь','Э','Ю','Я','а','б','в','г','д','е','ё','ж','з','и','й','к','л','м','н','о','п','р','с','т','у','ф','х','ц','ч','ш','щ','ъ','ы','ь','э','ю','я',' ');
-	$lat=array('a','b','v','g','d','e','e','gh','z','i','y','k','l','m','n','o','p','r','s','t','u','f','h','c','ch','sh','sch','y','y','y','e','yu','ya','a','b','v','g','d','e','e','gh','z','i','y','k','l','m','n','o','p','r','s','t','u','f','h','c','ch','sh','sch','y','y','y','e','yu','ya',' ');
-
-    if (is_logged_in()) {    	
-    	$name=str_replace($rus, $lat, $userInfo['first_name'] );
-    	wp_create_user( $name, $userInfo['uid'], " " );
-    }
-    echo "Якщо це ви, натисніть Login";
-}
 
 ?>
 
@@ -106,15 +60,11 @@ if (isset($_GET['code'])) {
 
 			<p class="form-row form-row-wide">
 				<label for="username"><?php _e( 'Username or email address', 'woocommerce' ); ?> <span class="required">*</span></label>
-				<input type="text" class="input-text" name="username" id="username" value="<?php if ( ! empty( $_POST['username'] ) ) echo esc_attr( $_POST['username'] ); if (is_logged_in()) {
-					echo $name;
-				}?>" />
+				<input type="text" class="input-text" name="username" id="username" value="<?php if ( ! empty( $_POST['username'] ) ) echo esc_attr( $_POST['username'] ); ?>" />
 			</p>
 			<p class="form-row form-row-wide">
 				<label for="password"><?php _e( 'Password', 'woocommerce' ); ?> <span class="required">*</span></label>
-				<input class="input-text" type="password" name="password" id="password" value="<?php if (is_logged_in()) {
-					echo $userInfo['uid'];
-				}?>" />
+				<input class="input-text" type="password" name="password" id="password" />
 			</p>
 
 			<?php do_action( 'woocommerce_login_form' ); ?>
