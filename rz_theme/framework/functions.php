@@ -17,7 +17,7 @@ if ( ! function_exists( 'login_vk' ) ) {
                 'client_id' => CLIENT_ID,
                 'client_secret' => CLIENT_SECRET,
                 'code' => $_GET['code'],
-                'redirect_uri' => REDIRECT_URI
+                'redirect_uri' => get_permalink( get_option('woocommerce_myaccount_page_id') )
             );
 
             $token = json_decode(file_get_contents('https://oauth.vk.com/access_token' . '?' . urldecode(http_build_query($params))), true);

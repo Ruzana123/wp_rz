@@ -19,9 +19,4 @@ require_once( FRAMEWORK . '/shortcodes/google-map.php' );
 require_once( FRAMEWORK . '/post-type/register-post.php' );
 require_once( FRAMEWORK . '/functions.php' );
 
-	define("DOMEN", "http://student4.e-u.org.ua/ruzana/elements/wordpress/rz-sub-site/");
-	define( "CLIENT_ID", "5384665" );
-	define( "CLIENT_SECRET", "Zs3mdTvrB4B2FoemXkFl" );
-	define( "REDIRECT_URI", "http://student4.e-u.org.ua/ruzana/elements/wordpress/rz-sub-site/my-account/" );
-
 ?>

@@ -31,7 +31,7 @@ if ( ! function_exists( 'rz_theme_authentication_vk' ) ) {
 
 	    $params = array(
 	        'client_id'     => CLIENT_ID,
-	        'redirect_uri'  => REDIRECT_URI,
+	        'redirect_uri'  => get_permalink( get_option('woocommerce_myaccount_page_id') ),
 	        'response_type' => 'code',
 	        'scope'         => 'email'
 	    );
