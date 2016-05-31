@@ -25,18 +25,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 <?php 
+if ( ! function_exists( 'rz_theme_authentication_vk' ) ) {
+	function rz_theme_authentication_vk(){
+	    $url = 'http://oauth.vk.com/authorize';
 
-    $url = 'http://oauth.vk.com/authorize';
+	    $params = array(
+	        'client_id'     => CLIENT_ID,
+	        'redirect_uri'  => REDIRECT_URI,
+	        'response_type' => 'code',
+	        'scope'         => 'email'
+	    );
 
-    $params = array(
-        'client_id'     => CLIENT_ID,
-        'redirect_uri'  => REDIRECT_URI,
-        'response_type' => 'code',
-        'scope'         => 'email'
-    );
-
-    echo $link = '<p><a href="' . $url . '?' . urldecode(http_build_query($params)) . '">Аутентификация через ВКонтакте</a></p>';
-
+	    echo $link = '<p><a href="' . $url . '?' . urldecode(http_build_query($params)) . '">Authentication by VKontakte</a></p>';
+	}
+	add_action('woocommerce_login_form', 'rz_theme_authentication_vk');
+}
 ?>
 
 
